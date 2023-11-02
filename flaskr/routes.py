@@ -1,3 +1,4 @@
+from time import sleep
 import flask
 import cv2
 
@@ -9,14 +10,14 @@ def create_main_page():
 
 @main.route('/annotated_img')
 def show_annotated_img():
-    def gen_frame():
+    def gen_frames():
         while True:
-            if detector.annotated_frame is not None:
-                frame = detector.annotated_frame
-                frame = cv2.imencode('.jpg', frame)[1].tobytes()
-                yield (b'--frame\r\n'
-                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-            else:
-                pass
+            frame = detector.get_annotate_frame()  # read the camera frame
+            if frame is None:
+                sleep(0.2)
+                continue
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')  # concat frame one by one and show result
     return flask.Response(
-        gen_frame(), mimetype='multipart/x-mixed-replace; boundary=frame')
+        gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
