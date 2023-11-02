@@ -1,8 +1,7 @@
-import cv2
 import flask
+import cv2
 
 from flaskr.extensions import main, detector
-
 
 @main.route('/')
 def create_main_page():
