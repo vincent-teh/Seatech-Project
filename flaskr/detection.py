@@ -35,12 +35,14 @@ class DetectorModel:
             ret, frame = cam_feed.read()
             if ret == False:
                 continue
-            self.results: Results = self.model.predict(source=frame, verbose=False)
-            self.annotated_frame = self.results[0].plot()
+            results: Results = self.model.predict(source=frame, verbose=False)
+            self.annotated_frame = results[0].plot()
+            self.set_result(results[0])
 
-        # Process results list
-        # for result in results:
-        #     boxes = result.boxes  # Boxes object for bbox outputs
-        #     masks = result.masks  # Masks object for segmentation masks outputs
-        #     keypoints = result.keypoints  # Keypoints object for pose outputs
-        #     probs = result.probs  # Probs object for classification outputs
+    def set_result(self, result: Results) -> None:
+        self.results = result
+
+    def get_result(self) -> None | Results:
+        results = self.results
+        self.results = None
+        return results

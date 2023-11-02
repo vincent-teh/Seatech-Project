@@ -1,0 +1,6 @@
+model: yolov8s.pt
+# source: video1.mp4
+source: 2
+
+port: COM3
+baudrate: 9600
