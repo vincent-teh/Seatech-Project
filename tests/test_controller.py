@@ -3,7 +3,6 @@ Defines the configuration for the Serial controlling the Arduino.
 """
 
 from abc import abstractmethod
-import random
 import time
 import serial
 
@@ -11,15 +10,29 @@ from dataclasses import dataclass
 
 from typing import Any, Protocol
 from threading import Thread
-from flaskr.config import AlgoFormat, ConnectorFormat
 from ultralytics.engine.results import Results
 
+
+@dataclass
+class AlgoFormat:
+    ycenter: int
+    angle_factor: int
+
+@dataclass
+class ConnectorFormat:
+    port: str
+    baudrate: int
 
 class ResultGenerator(Protocol):
     @abstractmethod
     def get_result(self) -> None | Results:
         """Obtained the detection result"""
 
+
+class ResultGen:
+    @abstractmethod
+    def get_result(self) -> None | Results:
+        return None
 
 class MovementAlgo:
     """
@@ -38,20 +51,19 @@ class MovementAlgo:
         if result is None:
             return None
         boxes = result.boxes
-        x1, y1, x2, y2 = self._unpack_xyxy(boxes.xyxy[0])
+        x1, y1, x2, y2 = boxes.xyxy
         y_center = (y1 - y2) / 2
-        y_error = int(self.y_correct - y_center)
-        return y_error
+        y_error = self.y_correct - y_center
+        return y_error * self.angle_factor
 
-    def _unpack_xyxy(self, box):
-        return int(box[0]), int(box[1]), int(box[2]), int(box[3])
 
 class SerialConnector:
     def __init__(self, hyperparams: ConnectorFormat) -> None:
+        print("Contructor is Called")
         self.ser = serial.Serial(hyperparams.port, hyperparams.baudrate)
         time.sleep(3)
 
-    def write(self, data: Any):
+    def __call__(self, data: Any):
         """Sends data through serial."""
         data = str(data)
         self.ser.write(data.encode('utf-8'))
@@ -72,4 +84,7 @@ class ServosHandler:
             angle = self.algo()
             if angle is None:
                 continue
-            self.ser.write(angle)
+            self.ser(angle)
+
+
+ser = ServosHandler(MovementAlgo(ResultGen(), AlgoFormat(100, 0.8)), SerialConnector(ConnectorFormat('COM6', 9600)))

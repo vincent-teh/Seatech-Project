@@ -9,4 +9,4 @@ if exist "%venv_path%\Scripts\activate.bat" (
     echo Virtual environment does not exist at the specified path.
 )
 
-flask --app flaskr run --debug
+flask --app flaskr run
