@@ -1,8 +1,8 @@
-model: yolov8s.pt
-source: 0
+model: best (10).pt
+source: 1
 
-port: COM6
+port: COM8
 baudrate: 9600
 
 ycenter: 240
-angle_factor: 0.4
+angle_factor: 0.1

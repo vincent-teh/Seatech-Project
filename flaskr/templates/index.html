@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caterkiller</title>
+  <link rel="icon" type="image/x-icon" href="D:\downloads\Seatech\2931494.png" />
+  <style>
+    html,
+    body,
+    div,
+    span,
+    object,
+    iframe,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    abbr,
+    address,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    img,
+    ins,
+    kbd,
+    q,
+    samp,
+    small,
+    strong,
+    sub,
+    sup,
+    var,
+    b,
+    i,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td,
+    article,
+    aside,
+    canvas,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section,
+    summary,
+    time,
+    mark,
+    audio,
+    video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: 0;
+      font-size: 100%;
+      vertical-align: baseline;
+      background: transparent;
+    }
+
+    body {
+      line-height: 1;
+    }
+
+    article,
+    aside,
+    details,
+    figcaption,
+    figure,
+    footer,
+    header,
+    hgroup,
+    menu,
+    nav,
+    section {
+      display: block;
+    }
+
+    nav ul {
+      list-style: none;
+    }
+
+    blockquote,
+    q {
+      quotes: none;
+    }
+
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+      content: "";
+      content: none;
+    }
+
+    a {
+      margin: 0;
+      padding: 0;
+      font-size: 100%;
+      vertical-align: baseline;
+      background: transparent;
+    }
+
+    /* change colours to suit your needs */
+    ins {
+      background-color: #ff9;
+      color: #000;
+      text-decoration: none;
+    }
+
+    /* change colours to suit your needs */
+    mark {
+      background-color: #ff9;
+      color: #000;
+      font-style: italic;
+      font-weight: bold;
+    }
+
+    del {
+      text-decoration: line-through;
+    }
+
+    abbr[title],
+    dfn[title] {
+      border-bottom: 1px dotted;
+      cursor: help;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    /* change border colour to suit your needs */
+    hr {
+      display: block;
+      height: 1px;
+      border: 0;
+      border-top: 1px solid #cccccc;
+      margin: 1em 0;
+      padding: 0;
+    }
+
+    input,
+    select {
+      vertical-align: middle;
+    }
+
+    /* YOUR CODE */
+    body {
+      font-size: 20px;
+      font-family: "Times New Roman", Times, serif, sans-serif;
+      background-color: #61ccbb;
+    }
+
+    /* HEADER PART */
+    header {
+      width: 100%;
+      position: fixed;
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      /* Center horizontally */
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    header button {
+      background-color: #a9ece2;
+      /* Button background color */
+      color: #007664;
+      /* Button text color */
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      position: absolute;
+      right: 80px;
+      /* Position the button 10px from the right edge */
+    }
+
+    header button a {
+      color: #007664;
+      text-decoration: none;
+    }
+
+    header button:hover {
+      background-color: #007664;
+      color: #a9ece2;
+    }
+
+    /* PICTURE AND TEXT BODY */
+    .parent {
+      display: flex;
+    }
+
+    .child1 {
+      background-color: #61ccbb;
+      height: 300px;
+      width: 50%;
+      flex: 1;
+      padding-left: 50px;
+      padding-right: 50px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      /* Stack child elements vertically */
+      justify-content: center;
+      /* Center vertically */
+      text-align: center;
+      /* Center the text inside the child1 div */
+    }
+
+    .child1 h1 {
+      text-align: center;
+      padding-bottom: 20px;
+      color: white;
+      font-size: 2.5rem;
+    }
+
+    .child1 p {
+      font-size: 1.2rem;
+      text-align: justify;
+      padding-bottom: 30px;
+    }
+
+    .child2 {
+      background-color: #61ccbb;
+      height: 300px;
+      width: 50%;
+      flex: 1;
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+
+    .child2 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    /* PADDING */
+    .pad {
+      height: 40px;
+    }
+
+    /* BUTTON */
+    .btn {
+      display: inline-block;
+      background-color: #007664;
+      /* Button background color */
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      width: 200px;
+    }
+
+    .btn:hover {
+      background-color: #a9ece2;
+      /* Light blue on hover */
+    }
+
+    /* SCROLL SNAP EFFECT */
+    .scroller {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    .scroller section {
+      scroll-snap-align: start;
+    }
+
+    /* VIDEO STREAMING */
+    .live-stream {
+      height: 100vh;
+    }
+
+    .live-stream h1 {
+      font-size: 3rem;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #video-container {
+      padding-top: 20px;
+      padding-left: 80px;
+      padding-right: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #video-container iframe {
+      width: 90%;
+      height: 70vh;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>CATERKILLER</h1>
+    <button><a href="#live-stream-section">Live Stream</a></button>
+  </header>
+  <main class="scroller">
+    <section>
+      <div class="pad"></div>
+      <div class="pad"></div>
+      <!-- First part -->
+      <div class="parent">
+        <div class="child1">
+          <h1>Pest Heatmap</h1>
+          <p>
+            A caterpillar becomes a butterfly by first growing, then wrapping itself in a protective case, and finally,
+            it emerges as a butterfly with wings ready to fly.
+          </p>
+          <button class="btn">Switch Robot</button>
+        </div>
+        <div class="child2">
+          <img src="https://www.hawkeye.farm/media/1177/heatmap-hires.png" />
+        </div>
+      </div>
+      <div class="pad"></div>
+      <!-- Second Part -->
+      <div class="parent">
+        <div class="child2">
+          <img src="https://www.hawkeye.farm/media/1177/heatmap-hires.png" alt="position" />
+        </div>
+        <div class="child1">
+          <div>
+            <h1>Position of robot</h1>
+            <p>
+              Robotics is all about making and using robots, which are machines that can be told what to do, and they're
+              used in lots of different places to help with various tasks.
+            </p>
+            <button class="btn">Control Robot</button>
+          </div>
+        </div>
+      </div>
+      <div class="pad"></div>
+    </section>
+    <section id="live-stream-section">
+      <div class="pad"></div>
+      <div class="pad"></div>
+      <div class="live-stream">
+        <h1>Live Streaming of Detection Results</h1>
+        <div id="video-container">
+          <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/om_1599v70c?si=mPQn1ovDtrhZY52E"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+        </div> -->
+        <img src="{{ url_for('main.show_annotated_img') }}" alt="processed images">
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

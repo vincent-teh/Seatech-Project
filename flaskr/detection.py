@@ -2,6 +2,8 @@
 Runs the Yolo Model
 """
 
+from datetime import datetime
+import time
 import cv2
 from dataclasses import dataclass
 import numpy as np
@@ -14,6 +16,10 @@ class DetectorFormat:
     model: str
     source: int | str
 
+def generate_time_name(name: str):
+    current_time = datetime.utcfromtimestamp(time.time())
+    formatted_time = current_time.strftime("%m-%d-%H-%M-%S%f")
+    return f'{name}_{formatted_time}.jpg'
 
 class DetectorModel:
     """
@@ -44,6 +50,7 @@ class DetectorModel:
             ret, frame = cam_feed.read()
             if ret == False:
                 continue
+            # cv2.imwrite(generate_time_name('result'), frame)
             results: Results = self.model.predict(source=frame, verbose=False)
             self.annotated_frame = results[0].plot()
             self.set_result(results[0])

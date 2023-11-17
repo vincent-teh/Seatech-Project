@@ -6,7 +6,7 @@ from flaskr.extensions import main, detector
 
 @main.route('/')
 def create_main_page():
-    return flask.render_template('base.html')
+    return flask.render_template('index.html')
 
 @main.route('/annotated_img')
 def show_annotated_img():
